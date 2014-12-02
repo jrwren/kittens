@@ -1,12 +1,13 @@
 package main
 
 import (
+	"os"
+	"strings"
+
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/jinzhu/gorm"
 	_ "github.com/lib/pq"
 	_ "github.com/mattn/go-sqlite3"
-	"os"
-	"strings"
 )
 
 var (
@@ -98,7 +99,7 @@ func InitDatabase() {
 	//              └─── IrcUserChannel (#channel) 1:1
 	//
 
-	db.AutoMigrate(User{}, Server{}, Channel{}, IrcUser{}, IrcUserChannel{})
+	db.AutoMigrate(&User{}, &Server{}, &Channel{}, &IrcUser{}, &IrcUserChannel{})
 
 	// Check to see if we have any users created.
 	// If we don't have any users at all then we
